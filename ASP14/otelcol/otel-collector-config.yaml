@@ -1,0 +1,20 @@
+﻿receivers:
+  otlp:
+    protocols:
+      grpc: {}
+      http: {}
+
+exporters:
+  debug: {}
+
+processors:
+  batch:
+    timeout: 5s
+    send_batch_size: 100
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
